@@ -10,9 +10,14 @@
     <title>Album example · Bootstrap v5.1</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <!-- Bootstrap core CSS -->
+  <!-- Bootstrap core CSS -->
 <link href="<?php echo base_url();?>/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+      <style>
+          .img-fluid {
+              max-height: 150px;
+              width: auto;
+          }
+      </style>
   </head>
   <body>
 
@@ -37,7 +42,7 @@
         </button>
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <table class="table">
+          <table class="table align-middle">
               <thead class="table-dark">
               <tr>
                   <th scope="col">No</th>
@@ -53,7 +58,7 @@
               <tr>
                   <th scope="row">1</th>
                   <td>
-                      <img src="..." alt="..." class="img-thumbnail">
+                      <img src="<?php echo base_url();?>/assets/dist/images/coffee.jpg" alt="..." class="img-fluid">
                   </td>
                   <td>Otto</td>
                   <td>@mdo</td>
@@ -114,9 +119,6 @@
 
 </main>
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
 <script src="<?php echo base_url();?>/assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>
