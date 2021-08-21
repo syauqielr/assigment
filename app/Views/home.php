@@ -14,7 +14,7 @@
 <link href="<?php echo base_url();?>/assets/dist/css/bootstrap.min.css" rel="stylesheet">
       <style>
           .img-fluid {
-              max-height: 150px;
+              max-height: 100px;
               width: auto;
           }
       </style>
@@ -35,7 +35,7 @@
 <main>
   <div class="album py-5 bg-light">
     <div class="container">
-        <div class="row mb-2">
+        <div class="row mb-3">
         <!-- Edit Button trigger modal -->
         <button type="button" class="btn btn-success btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#addModal">
             Add Barang
@@ -69,6 +69,7 @@
                       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
                           Edit
                       </button>
+                      <a class="btn btn-danger" href="#" role="button">Delete</a>
 
                   </td>
               </tr>
@@ -87,11 +88,31 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form>
+                        <div class="form-group mb-3">
+                            <label for="formNama">Nama Barang</label>
+                            <input type="text" class="form-control" id="formNama" placeholder="Nama Barang">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="formKategori">Kategori</label>
+                            <select class="form-control" id="formKategori">
+                                <option>Retail</option>
+                                <option>Wholesale</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="formHarga">Harga Barang</label>
+                            <input type="number" class="form-control" id="formHarga" placeholder="Harga Barang">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Foto Barang</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-success">Submit</button>
                 </div>
             </div>
         </div>
@@ -107,11 +128,31 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form>
+                        <div class="form-group mb-3">
+                            <label for="formNama">Nama Barang</label>
+                            <input type="text" class="form-control" id="formNama" placeholder="Nama Barang">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="formKategori">Kategori</label>
+                            <select class="form-control" id="formKategori">
+                                <option>Retail</option>
+                                <option>Wholesale</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="formHarga">Harga Barang</label>
+                            <input type="number" class="form-control" id="formHarga" placeholder="Harga Barang">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Foto Barang</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-success">Submit</button>
                 </div>
             </div>
         </div>
