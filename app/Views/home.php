@@ -174,7 +174,111 @@ if ($role){
     <?php echo $modal; ?>
 </main>
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="<?php echo base_url();?>/assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#table_id').DataTable();
+    } );
+    var save_method; //for save method string
+    var table;
+
+    function add_book()
+    {
+        save_method = 'add';
+        $('#form')[0].reset(); // reset form on modals
+        $('#modal_form').modal('show'); // show bootstrap modal
+        //$('.modal-title').text('Add Person'); // Set Title to Bootstrap modal title
+    }
+
+    function edit_book(id)
+    {
+        save_method = 'update';
+        $('#form')[0].reset(); // reset form on modals
+        <?php header('Content-type: application/json'); ?>
+        //Ajax Load data from ajax
+        $.ajax({
+            url : "<?php echo site_url('public/index.php/book/ajax_edit/')?>/" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data)
+            {
+                console.log(data);
+
+                $('[name="book_id"]').val(data.book_id);
+                $('[name="book_isbn"]').val(data.book_isbn);
+                $('[name="book_title"]').val(data.book_title);
+                $('[name="book_author"]').val(data.book_author);
+                $('[name="book_category"]').val(data.book_category);
+
+                $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
+                $('.modal-title').text('Edit Book'); // Set title to Bootstrap modal title
+
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                console.log(jqXHR);
+                alert('Error get data from ajax');
+            }
+        });
+    }
+
+    function save()
+    {
+        var url;
+        if(save_method == 'add')
+        {
+            url = "<?php echo site_url('public/index.php/book/book_add')?>";
+        }
+        else
+        {
+            url = "<?php echo site_url('public/index.php/book/book_update')?>";
+        }
+
+        // ajax adding data to database
+        $.ajax({
+            url : url,
+            type: "POST",
+            data: $('#form').serialize(),
+            dataType: "JSON",
+            success: function(data)
+            {
+                //if success close modal and reload ajax table
+                $('#modal_form').modal('hide');
+                location.reload();// for reload a page
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error adding / update data');
+            }
+        });
+    }
+
+    function delete_book(id)
+    {
+        if(confirm('Are you sure delete this data?'))
+        {
+            // ajax delete data from database
+            $.ajax({
+                url : "<?php echo site_url('public/index.php/book/book_delete')?>/"+id,
+                type: "POST",
+                dataType: "JSON",
+                success: function(data)
+                {
+
+                    location.reload();
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert('Error deleting data');
+                }
+            });
+
+        }
+    }
+
+</script>
   </body>
 </html>
