@@ -45,11 +45,13 @@ class Home extends BaseController
         return redirect()->to('/');
     }
 	public function main(){
-        $session = session();
-	    if (is_null($session)){
-            return redirect()->to('/');
-        }
 
-        return view('home');
+        $session = session();
+        d($session->username);
+	    if (!is_null($session->username)){
+            return view('home');
+        }
+        return redirect()->to('/');
+
     }
 }
