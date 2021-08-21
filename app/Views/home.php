@@ -87,33 +87,35 @@
                     <h5 class="modal-title" id="addModalLabel">Add Barang</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form action=" ">
                 <div class="modal-body">
-                    <form>
+
                         <div class="form-group mb-3">
                             <label for="formNama">Nama Barang</label>
-                            <input type="text" class="form-control" id="formNama" placeholder="Nama Barang">
+                            <input type="text" class="form-control" id="formNama" name="namaBarang" placeholder="Nama Barang" required>
                         </div>
                         <div class="form-group mb-3">
                             <label for="formKategori">Kategori</label>
-                            <select class="form-control" id="formKategori">
-                                <option>Retail</option>
-                                <option>Wholesale</option>
+                            <select class="form-select" name="kategoriBarang" aria-label="Default select example" required>
+                                <option selected value="Retail">Retail</option>
+                                <option value="Wholesale">Wholesale</option>
                             </select>
                         </div>
                         <div class="form-group mb-3">
                             <label for="formHarga">Harga Barang</label>
-                            <input type="number" class="form-control" id="formHarga" placeholder="Harga Barang">
+                            <input type="number" class="form-control" name="hargaBarang" id="formHarga" placeholder="Harga Barang" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Foto Barang</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            <label for="fotoBarang">Foto Barang</label>
+                            <input type="file" class="form-control-file" name="fotoBarang" id="fotoBarang" accept="image/*" required>
                         </div>
-                    </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -127,33 +129,35 @@
                     <h5 class="modal-title" id="editModalLabel">Edit Barang</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form>
+                <form action=" ">
+                    <div class="modal-body">
+
                         <div class="form-group mb-3">
                             <label for="formNama">Nama Barang</label>
-                            <input type="text" class="form-control" id="formNama" placeholder="Nama Barang">
+                            <input type="text" class="form-control" id="formNama" name="namaBarang" placeholder="Nama Barang" required>
                         </div>
                         <div class="form-group mb-3">
                             <label for="formKategori">Kategori</label>
-                            <select class="form-control" id="formKategori">
-                                <option>Retail</option>
-                                <option>Wholesale</option>
+                            <select class="form-select" name="kategoriBarang" aria-label="Default select example" required>
+                                <option selected value="Retail">Retail</option>
+                                <option value="Wholesale">Wholesale</option>
                             </select>
                         </div>
                         <div class="form-group mb-3">
                             <label for="formHarga">Harga Barang</label>
-                            <input type="number" class="form-control" id="formHarga" placeholder="Harga Barang">
+                            <input type="number" class="form-control" name="hargaBarang" id="formHarga" placeholder="Harga Barang" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Foto Barang</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            <label for="fotoBarang">Foto Barang</label>
+                            <input type="file" class="form-control-file" name="fotoBarang" id="fotoBarang" accept="image/*" required>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Submit</button>
-                </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
