@@ -17,9 +17,10 @@ class Home extends BaseController
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
         $data = $model->where('username', $username)->first();
+        d($data);
         if($data){
             $pass = $data['password'];
-            $verify_pass = password_verify($password, $pass);
+            $verify_pass = !strcmp($password, $pass);
             if($verify_pass){
                 $ses_data = [
                     'username'     => $data['username'],
@@ -27,7 +28,7 @@ class Home extends BaseController
                     'logged_in'     => TRUE
                 ];
                 $session->set($ses_data);
-                return redirect()->to('/main');
+                return redirect()->to('/home/main');
             }else{
                 $session->setFlashdata('msg', 'Wrong Password');
                 return redirect()->to('/');

@@ -38,23 +38,19 @@
 <body class="text-center">
 
 <main class="form-signin">
-    <form>
+    <form action="<?php echo base_url();?>/home/auth" method="post">
         <img class="mb-4" src="<?php echo base_url();?>/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
+        <?php if(session()->getFlashdata('msg')):?>
+            <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
+        <?php endif;?>
         <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
+            <input type="text" class="form-control" id="floatingInput" placeholder="username" required name="username">
+            <label for="floatingInput">Username</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required name="password">
             <label for="floatingPassword">Password</label>
-        </div>
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
         </div>
         <a href="<?php echo base_url();?>/home/main"><button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button></a>
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>

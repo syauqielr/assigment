@@ -24,8 +24,8 @@
 <header>
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <strong>Home</strong>
+      <a href="<?php echo base_url();?>/home/logout" role="button" class="navbar-brand d-flex align-items-rights">
+        <strong>logout</strong>
       </a>
 
     </div>
