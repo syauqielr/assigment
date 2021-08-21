@@ -3,6 +3,9 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\UserModel;
+use App\Models\BarangModel;
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
 class Home extends BaseController
 {
 	public function index()
@@ -17,7 +20,7 @@ class Home extends BaseController
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
         $data = $model->where('username', $username)->first();
-        d($data);
+
         if($data){
             $pass = $data['password'];
             $verify_pass = !strcmp($password, $pass);
@@ -46,13 +49,59 @@ class Home extends BaseController
         return redirect()->to('/');
     }
 	public function main(){
-
         $session = session();
-        d($session->username);
+        $model = new BarangModel();
+        $data = [
+            'role' => $session->role,
+            'barang' => $model,
+            ];
 	    if (!is_null($session->username)){
-            return view('home');
+            return view('home',$data);
         }
         return redirect()->to('/');
 
+    }
+    public function addBarang(){
+        helper(['form', 'url']);
+        $this->BarangModel = new BarangModel();
+        $data = array(
+            'nama' => $this->request->getPost('namaBarang'),
+            'kategori' => $this->request->getPost('kategoriBarang'),
+            'harga' => $this->request->getPost('hargaBarang'),
+            'image_name' => $this->request->getPost('fotoBarang')
+        );
+        $insert = $this->BarangModel->barang_add($data);
+        echo json_encode(array("status" => TRUE));
+    }
+    public function ajax_edit($id) {
+
+        $this->BarangModel = new BarangModel();
+
+        $data = $this->BarangModel->get_by_id($id);
+
+        echo json_encode($data);
+    }
+
+    public function updateBarang() {
+
+        helper(['form', 'url']);
+        $this->BarangModel = new BarangModel();
+
+        $data = array(
+            'nama' => $this->request->getPost('namaBarang'),
+            'kategori' => $this->request->getPost('kategoriBarang'),
+            'harga' => $this->request->getPost('hargaBarang'),
+            'image_name' => $this->request->getPost('fotoBarang')
+        );
+        $this->BarangModel->barang_update(array('id' => $this->request->getPost('id')), $data);
+        echo json_encode(array("status" => TRUE));
+    }
+
+    public function deleteBarang($id) {
+
+        helper(['form', 'url']);
+        $this->BarangModel = new BarangModel();
+        $this->BarangModel->delete_by_id($id);
+        echo json_encode(array("status" => TRUE));
     }
 }
