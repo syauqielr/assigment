@@ -69,7 +69,8 @@ class Home extends BaseController
             'nama' => $this->request->getPost('namaBarang'),
             'kategori' => $this->request->getPost('kategoriBarang'),
             'harga' => $this->request->getPost('hargaBarang'),
-            'image_name' => $this->request->getPost('fotoBarang')
+            'image_name' => 'coffee.jpg'
+        //$this->request->getPost('fotoBarang')
         );
         $insert = $this->BarangModel->barang_add($data);
         echo json_encode(array("status" => TRUE));
@@ -92,9 +93,10 @@ class Home extends BaseController
             'nama' => $this->request->getPost('namaBarang'),
             'kategori' => $this->request->getPost('kategoriBarang'),
             'harga' => $this->request->getPost('hargaBarang'),
-            'image_name' => $this->request->getPost('fotoBarang')
+            //'image_name' => $this->request->getPost('fotoBarang')
         );
-        $this->BarangModel->barang_update(array('id' => $this->request->getPost('id')), $data);
+
+        $this->BarangModel->barang_update(array('id' => $this->request->getPost('idBarang')), $data);
         echo json_encode(array("status" => TRUE));
     }
 

@@ -13,7 +13,7 @@ if ($role){
                 </div>
                 <div class=\"modal-body form\">
                     <form action=\"#\" id=\"form\" >
-                        <input type=\"hidden\" value=\"\" name=\"barangId\"/>
+                        <input type=\"hidden\" value=\"\" name=\"idBarang\"/>
                         <div class=\"form-group mb-3\">
                             <label for=\"formNama\">Nama Barang</label>
                             <input type=\"text\" class=\"form-control\" id=\"formNama\" name=\"namaBarang\" placeholder=\"Nama Barang\" required>
@@ -120,7 +120,7 @@ if ($role){
                   <td><?php echo $x->nama;?></td>
                   <td><?php echo $x->kategori;?></td>
                   <td><?php echo $x->harga;?></td>
-                  <td><?php echo $discount;?></td>
+                  <td><?php echo floor($discount);?></td>
                   <td class="<?php echo $class; ?>">
                       <button class="btn btn-primary" onclick="edit_barang(<?php echo $x->id;?>)">Edit</button>
                       <button class="btn btn-danger" onclick="delete_barang(<?php echo $x->id;?>)">Delete</button>
@@ -170,9 +170,9 @@ if ($role){
 
                 $('[name="idBarang"]').val(data.id);
                 $('[name="namaBarang"]').val(data.nama);
-                $('[name="kategoriBarang"]').val(data.kategor);
+                $('[name="kategoriBarang"]').val(data.kategori);
                 $('[name="hargaBarang"]').val(data.harga);
-                $('[name="fotoBarang"]').val(data.image_name);
+               // $('[name="fotoBarang"]').val(data.image_name);
 
                 $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
                 $('.modal-title').text('Edit Barang'); // Set title to Bootstrap modal title
@@ -212,18 +212,19 @@ if ($role){
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
+                console.log($('#form').serialize())
                 alert('Error adding / update data');
             }
         });
     }
 
-    function delete_book(id)
+    function delete_barang(id)
     {
         if(confirm('Are you sure delete this data?'))
         {
             // ajax delete data from database
             $.ajax({
-                url : "<?php echo site_url('index.php/home/deleteBarang')?>/"+id,
+                url : "<?php echo site_url('home/deleteBarang')?>/"+id,
                 type: "POST",
                 dataType: "JSON",
                 success: function(data)
@@ -241,56 +242,5 @@ if ($role){
     }
 
 </script>
-<!-- Bootstrap modal -->
-<div class="modal fade" id="modal_form" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title">Book Form</h3>
-            </div>
-            <div class="modal-body form">
-                <form action="#" id="form" class="form-horizontal">
-                    <input type="hidden" value="" name="book_id"/>
-                    <div class="form-body">
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Book ISBN</label>
-                            <div class="col-md-9">
-                                <input name="book_isbn" placeholder="Book ISBN" class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Book Title</label>
-                            <div class="col-md-9">
-                                <input name="book_title" placeholder="Book_title" class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Book Author</label>
-                            <div class="col-md-9">
-                                <input name="book_author" placeholder="Book Author" class="form-control" type="text">
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Book Category</label>
-                            <div class="col-md-9">
-                                <input name="book_category" placeholder="Book Category" class="form-control" type="text">
-
-                            </div>
-                        </div>
-
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- End Bootstrap modal -->
-
   </body>
 </html>
