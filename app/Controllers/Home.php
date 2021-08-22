@@ -78,7 +78,6 @@ class Home extends BaseController
             'kategori' => $this->request->getPost('kategoriBarang'),
             'harga' => $this->request->getPost('hargaBarang'),
             'image_name' => $newfilename,
-        //$this->request->getPost('fotoBarang')
         );
         $insert = $this->BarangModel->barang_add($data);
         echo json_encode(array("status" => TRUE));
@@ -95,13 +94,20 @@ class Home extends BaseController
     public function updateBarang() {
 
         helper(['form', 'url']);
-        $this->BarangModel = new BarangModel();
+        $file = $this->request->getFile('fotoBarang');
 
+        $profile_image = $file->getName();
+
+        // Renaming file before upload
+        $temp = explode(".",$profile_image);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+        $file->move("uploads", $newfilename);
+        $this->BarangModel = new BarangModel();
         $data = array(
             'nama' => $this->request->getPost('namaBarang'),
             'kategori' => $this->request->getPost('kategoriBarang'),
             'harga' => $this->request->getPost('hargaBarang'),
-            //'image_name' => $this->request->getPost('fotoBarang')
+            'image_name' => $newfilename,
         );
 
         $this->BarangModel->barang_update(array('id' => $this->request->getPost('idBarang')), $data);
