@@ -12,7 +12,7 @@ if ($role){
                     <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
                 </div>
                 <div class=\"modal-body form\">
-                    <form action=\"#\" id=\"form\" >
+                    <form action=\"#\" id=\"form\" enctype=\"multipart/form-data\">
                         <input type=\"hidden\" value=\"\" name=\"idBarang\"/>
                         <div class=\"form-group mb-3\">
                             <label for=\"formNama\">Nama Barang</label>
@@ -189,6 +189,10 @@ if ($role){
     function save()
     {
         var url;
+        var myForm = $('#form')[0];
+
+        var formData = new FormData(myForm);
+        console.log(formData);
         if(save_method == 'add')
         {
             url = "<?php echo site_url('home/addBarang')?>";
@@ -202,7 +206,10 @@ if ($role){
         $.ajax({
             url : url,
             type: "POST",
-            data: $('#form').serialize(),
+            enctype: 'multipart/form-data',
+            data: formData,
+            processData: false,
+            contentType: false,
             dataType: "JSON",
             success: function(data)
             {

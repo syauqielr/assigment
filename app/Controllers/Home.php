@@ -64,12 +64,20 @@ class Home extends BaseController
     }
     public function addBarang(){
         helper(['form', 'url']);
+        $file = $this->request->getFile('fotoBarang');
+
+        $profile_image = $file->getName();
+
+        // Renaming file before upload
+        $temp = explode(".",$profile_image);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+        $file->move("uploads", $newfilename);
         $this->BarangModel = new BarangModel();
         $data = array(
             'nama' => $this->request->getPost('namaBarang'),
             'kategori' => $this->request->getPost('kategoriBarang'),
             'harga' => $this->request->getPost('hargaBarang'),
-            'image_name' => 'coffee.jpg'
+            'image_name' => $newfilename,
         //$this->request->getPost('fotoBarang')
         );
         $insert = $this->BarangModel->barang_add($data);
