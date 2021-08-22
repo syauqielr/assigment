@@ -50,12 +50,13 @@ class Home extends BaseController
     }
 	public function main(){
         $session = session();
-        $model = new BarangModel();
+        $this->BarangModel = new BarangModel();
         $data = [
             'role' => $session->role,
-            'barang' => $model,
+            'barang' => $this->BarangModel->get_all_barang(),
             ];
 	    if (!is_null($session->username)){
+
             return view('home',$data);
         }
         return redirect()->to('/');

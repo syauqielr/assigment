@@ -13,7 +13,10 @@ class BarangModel extends Model{
         $builder = $db->table('barang');
     }
 
-
+    public function get_all_barang() {
+        $query = $this->db->query('select * from barang');
+        return $query->getResult();
+    }
 
     public function barang_add($data) {
 
